@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  annotations:
+    pv.kubernetes.io/bound-by-controller: "yes"
+  finalizers:
+  - kubernetes.io/pv-protection
+  labels:
+    type: local
+  name: claim10
+  resourceVersion: "1036"
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 12Gi
+  hostPath:
+    path: /tmp/data
+    type: ""
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: manual
+
