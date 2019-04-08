@@ -1,0 +1,37 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hello-world41
+  labels:
+    app: hello-world41
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: hello-world41
+    spec:
+      containers:
+      - name: hello-world41
+        image: artmr/hello-world:latest
+        ports:
+        - containerPort: 80 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world41
+  labels:
+    app: hello-world41
+spec:
+  ports:
+  - name: web
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: hello-world41
+  type: LoadBalancer
+#  externalIPs:
+#    - 172.16.141.108
+
